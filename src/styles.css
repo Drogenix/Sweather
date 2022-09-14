@@ -1,0 +1,881 @@
+/* You can add global styles to this file, and also import other style files */
+body
+{
+  padding: 0;
+  margin:0;
+  font-family: 'IBM Plex Serif', serif;
+  font-weight: 400;
+  background: linear-gradient(to bottom, #007ced 1%,#cce7ff 110%);
+  background-attachment: fixed;
+}
+p
+{
+  margin: 0;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  background: linear-gradient(175deg, #007ced, #cce7ff);
+  border: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #FFFFFF80;
+}
+.header
+{
+  z-index: 2;
+  height: 70px;
+  background-color: #FFFFFF40;
+  display: flex;
+  align-items: center;
+  padding: 0 200px;
+}
+.header_navbar
+{
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+.nav_item
+{
+  color: white;
+  text-decoration: none;
+  font-size: 24px;
+  font-weight: 500;
+  padding-bottom: 10px;
+  transition: 300ms ease;
+  margin-left: 530px;
+}
+.nav_item:hover
+{
+  text-shadow: 2px 2px 6px white;
+}
+.search_box
+{
+  z-index: 4;
+  width: 250px;
+  height: 40px;
+  background: white;
+  align-items: center;
+  border-radius: 50px;
+  padding: 0 20px;
+  border: 2px solid #FFAA54;
+  cursor: pointer;
+  display: flex;
+  margin: 0 auto;
+}
+.input_field
+{
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  height: 25px;
+  width: 210px;
+  margin-right: 10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #777777;
+  transition: 200ms ease;
+}
+.input_field:focus
+{
+  font-size: 16px;
+  outline: none;
+  color: #003370;
+}
+
+.vertical_separator
+{
+  border-right: 1px solid #FFAA54;
+  height: 20px;
+  width: 1px;
+  margin-right: 10px;
+}
+.color_line
+{
+  height: 5px;
+  width: 320px;
+  background: #FFE500;
+}
+.header_border
+{
+  display: flex;
+}
+.page_search
+{
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.big_box
+{
+  width: 350px;
+  height: 60px;
+  border: 2px solid #00F0FF;
+  background: #FFFFFF;
+}
+.big_field
+{
+  height: 30px;
+  font-size: 16px;
+  width: 300px;
+}
+.big_field:focus
+{
+  font-size: 18px;
+  outline: none;
+  color: #003370;
+  opacity: 90%;
+}
+
+#cloud-intro{
+  z-index: 1;
+  position: absolute;
+  height: 92.5vh;
+  width: 100%;
+  background: url(https://static.radulescu.me/examples/clouds/clouds1000.png);
+  background: url(https://static.radulescu.me/examples/clouds/clouds1000.png) 0 200px,
+  url(https://static.radulescu.me/examples/clouds/clouds1200_1.png) 0 300px,
+  url(https://static.radulescu.me/examples/clouds/clouds1000_blur3.png) 100px 250px;
+  animation: wind 20s linear infinite;
+}
+@keyframes wind{
+  0% {
+    background-position: 0 200px, 0 300px, 100px 250px;
+  }
+  100% {
+    background-position: 1000px 200px, 1200px 300px, 1100px 250px;
+  }
+
+}
+.search_button
+{
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+.search_button img
+{
+  position: relative;
+  transition: 300ms ease;
+}
+.search_button img:hover
+{
+  margin-bottom: 5px;
+
+}
+.weather_info_container
+{
+  display: block;
+  padding: 20px 200px;
+}
+.weather_navbar
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  margin-bottom: 30px;
+}
+.navbar_item
+{
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  width: 200px;
+  background: #FFFFFF40;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 0 12px #00337060;
+  transition: 300ms ease;
+}
+.navbar_item:hover {
+  margin-bottom: 5px;
+  text-shadow: 2px 2px 8px white;
+}
+.weather_content
+{
+  display: flex;
+  justify-content: center;
+}
+.weather_general
+{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
+}
+.weather_container
+{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.day_weather
+{
+  display: block;
+  width: 600px;
+  box-shadow: 0px 2px 6px rgb(0,0,0,0.5);
+  border-radius: 10px;
+  background: #004DA860;
+  padding: 10px;
+  height: 268px;
+}
+.title
+{
+  padding: 0;
+  margin: 0;
+  font-size: 22px;
+  font-weight: normal;
+  color: white;
+  margin-bottom: 10px;
+}
+.weather_info{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+.day_state
+{
+  display: block;
+  margin-left: 20px;
+  margin-bottom: 5px;
+}
+.day_state p
+{
+  text-align: center;
+  font-size: 20px;
+  font-weight: bolder;
+  color: white;
+  margin: 0;
+}
+.day_temp
+{
+  text-align: center;
+  width: 300px;
+  display: block;
+}
+.temp
+{
+  font-size: 48px;
+  font-weight: bold;
+  color: #FFB92F;
+  margin: 0;
+}
+.temp span
+{
+  color: white;
+  font-size: 32px;
+  position: relative;
+  bottom: 15px;
+}
+.day_night_temp
+{
+  font-size: 20px;
+  color: white;
+  font-weight: bolder;
+  margin-right: 10px;
+}
+.day_night_temp span
+{
+  color: black;
+}
+.options
+{
+  width: 400px;
+  margin-left: 30px;
+  padding: 10px 0;
+}
+.sunrise
+{
+  display: flex;
+  margin: 10px 10px 0 10px;
+  justify-content: space-between;
+
+}
+.feels_like
+{
+  margin: 0;
+  font-size: 20px;
+  color: white;
+}
+.sun_info
+{
+  display: block;
+  width: 205px;
+  text-align: center;
+  height: 105px;
+}
+.sun_icon
+{
+  position: relative;
+  top:-10px
+}
+.timelines
+{
+  position: relative;
+  bottom: 8px;
+  color: white;
+  font-size: 16px;
+}
+.timelines p
+{
+  font-size: 16px;
+  font-weight: bolder;
+  margin: 0;
+}
+.timelines img
+{
+  margin: 0 3px;
+}
+.horizontal_separator
+{
+  width: 100%;
+  height: 2px;
+  background: white;
+  margin-bottom: 10px;
+}
+.weather_options
+{
+  padding: 0 20px;
+  display: block;
+
+}
+.options_field
+{
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+}
+
+.options_field p
+{
+  color: white;
+  font-size: 18px;
+}
+#pressure
+{
+  margin-right: 11px;
+  margin-left: 6px;
+}
+#wind
+{
+  margin-right: 10px;
+}
+#humidity
+{
+  margin-right: 15px;
+  margin-left: 2px;
+}
+#visibility
+{
+  margin-right: 13px;
+  top:3px;
+  position: relative;
+}
+.daily_weather_container
+{
+  display: block;
+  width: 600px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 6px rgb(0,0,0,0.5);
+  background: #004DA860;
+  padding: 10px 10px 0px 10px;
+  margin-bottom: 20px;
+}
+.daily_weather
+{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 20px;
+}
+.align-center
+{
+  text-align: center;
+}
+.small-img
+{
+  height: 80px;
+  width: 80px;
+}
+.weekend_weather_container
+{
+  display: block;
+  box-shadow: 0px 2px 6px rgb(0,0,0,0.5);
+  border-radius: 10px;
+  background: #004DA860;
+  padding: 10px 5px;
+  margin-bottom: 20px;
+}
+.weekend_weather
+{
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 20px;
+
+}
+.night_temp
+{
+  color: black;
+  font-weight: normal;
+}
+.month_weather_container
+{
+  display: block;
+  border-radius: 10px;
+  background: #004DA860;
+  padding-top: 20px;
+  box-shadow: 0px 2px 6px rgb(0,0,0,0.4);
+}
+
+.month_title
+{
+  margin:0 10px 30px 10px
+}
+
+.month_weather
+{
+  border-top: 1px solid white;
+}
+.month_weather p
+{
+  font-size: 18px;
+  color: white;
+}
+.fajsaksf
+{
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 10px 0 10px 20px;
+}
+.aspifkl p{
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+  color: white;
+}
+.aspifkl
+{
+  display: flex;
+}
+.month_day
+{
+  margin-right: 30px;
+  width: 127px;
+}
+.month_state
+{
+  margin: 0 15px;
+}
+.WUPbwxcclV
+{
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  color: white;
+  margin-right: 20px;
+  width: 110px;
+}
+.WUPbwxcclV img
+{
+  top:3px;
+  position: relative;
+}
+
+.list_button
+{
+  border: 0;
+  background: transparent;
+  width: 15px;
+  height: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 300ms ease;
+  position: relative;
+  margin-right: 30px;
+  top:3px;
+  margin-left: auto;
+}
+.list_button:focus
+{
+  transform: rotate(0.5turn);
+}
+.active
+{
+  top: -3px;
+  left: 95%;
+margin: 20px 0 0 0 ;
+}
+.WUPbwxcclV p img
+{
+  margin-right: 20px;
+}
+.day_details
+{
+  margin-top: 10px;
+  display: flex;
+  padding: 0 20px;
+  margin-bottom: 20px;
+  align-items: center;
+}
+.period_info
+{
+  display: flex;
+  justify-content: space-between;
+  width: 490px;
+  align-items: center;
+}
+.period_temp
+{
+  display: flex;
+}
+.period_temp p{
+  font-size: 40px;
+  font-weight: bolder;
+  margin-right: 5px;
+}
+.period_temp img
+{
+  margin-top: 10px;
+  margin-left: 10px;
+}
+.period_info p img
+{
+  position: relative;
+  top: 3px;
+  margin-right: 10px;
+}
+.period_description
+{
+  margin: 7px 0;
+}
+.period_options
+{
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 15px 15px 0 15px;
+  height: 70px;
+  box-shadow: 0px 2px 6px rgb(0,0,0,0.4);
+}
+.option_container
+{
+  display: flex;
+}
+.alshfas
+{
+  display: flex;
+  flex-grow: 1;
+  margin-right: 20px;
+}
+.alshfas:last-child
+{
+  margin: 0;
+}
+.alshfas img
+{
+  position: relative;
+  top: 3px;
+  margin-right: 10px;
+}
+.separator
+{
+  border-bottom: 1px solid white;
+  margin-bottom: 5px;
+}
+.footer
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 140px;
+  background: rgb(0,0,0,.85);
+}
+.links_title
+{
+
+  text-decoration: none;
+  color: #FFFFFF;
+  text-shadow: 0 0 12px #00F0FF;
+  font-size: 18px;
+}
+.footer_links
+{
+  display: flex;
+  justify-content: space-between;
+}
+.links a
+{
+  text-decoration: none;
+  display: block;
+  margin: 3px 0;
+  color: #4271A8;
+  transition: 300ms ease;
+}
+.links a:hover
+{
+  color: #FFFFFF;
+  text-shadow: 0 0 2px #ffffff;
+}
+.footer_copyright
+{
+  margin-top: 60px;
+}
+.footer_copyright p
+{
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.socials_container
+{
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.socials_container a
+{
+  margin-left: 25px;
+  cursor: pointer;
+  position: relative;
+  width: 35px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.socials_container a img
+{
+  transition: 400ms;
+  border-radius: 50%;
+  position: relative;
+  border: 1px solid transparent;
+}
+.socials_container a img:hover
+{
+ border-color: #00F0FF;
+}
+
+.socials_container a:first-child
+{
+  margin:0;
+}
+.month_container
+{
+  display: block;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  position: relative;
+  transition: 400ms;
+}
+.month_container:hover
+{
+  border-color: rgba(255, 255, 255);
+}
+.month_container:last-child
+{
+  border-bottom: 1px solid transparent;
+}
+.details_container
+{
+  display: block;
+}
+.details_container:hover
+{
+  border-color: rgba(255, 255, 255);
+  cursor: pointer;
+}
+.wu{display:inline-block;background-repeat:no-repeat;padding:0;margin:0}.wu-16{width:16px;height:16px}.wu-32{width:32px;height:32px}.wu-64{width:64px;height:64px}.wu-128{width:128px;height:128px}.wu-256{width:256px;height:256px}.wu-black.wu-chanceflurries{background:url(dist/icons/black/svg/chanceflurries.svg),linear-gradient(transparent,transparent)}.wu-black.wu-chancerain{background:url(dist/icons/black/svg/chancerain.svg),linear-gradient(transparent,transparent)}.wu-black.wu-chancesleet{background:url(dist/icons/black/svg/chancesleet.svg),linear-gradient(transparent,transparent)}.wu-black.wu-chancesnow{background:url(dist/icons/black/svg/chancesnow.svg),linear-gradient(transparent,transparent)}.wu-black.wu-chancetstorms{background:url(dist/icons/black/svg/chancetstorms.svg),linear-gradient(transparent,transparent)}.wu-black.wu-clear{background:url(dist/icons/black/svg/clear.svg),linear-gradient(transparent,transparent)}.wu-black.wu-cloudy{background:url(dist/icons/black/svg/cloudy.svg),linear-gradient(transparent,transparent)}.wu-black.wu-flurries{background:url(dist/icons/black/svg/flurries.svg),linear-gradient(transparent,transparent)}.wu-black.wu-fog{background:url(dist/icons/black/svg/fog.svg),linear-gradient(transparent,transparent)}.wu-black.wu-hazy{background:url(dist/icons/black/svg/hazy.svg),linear-gradient(transparent,transparent)}.wu-black.wu-mostlycloudy{background:url(dist/icons/black/svg/mostlycloudy.svg),linear-gradient(transparent,transparent)}.wu-black.wu-mostlysunny{background:url(dist/icons/black/svg/mostlysunny.svg),linear-gradient(transparent,transparent)}.wu-black.wu-partlycloudy{background:url(dist/icons/black/svg/partlycloudy.svg),linear-gradient(transparent,transparent)}.wu-black.wu-partlysunny{background:url(dist/icons/black/svg/partlysunny.svg),linear-gradient(transparent,transparent)}.wu-black.wu-rain{background:url(dist/icons/black/svg/rain.svg),linear-gradient(transparent,transparent)}.wu-black.wu-sleet{background:url(dist/icons/black/svg/sleet.svg),linear-gradient(transparent,transparent)}.wu-black.wu-snow{background:url(dist/icons/black/svg/snow.svg),linear-gradient(transparent,transparent)}.wu-black.wu-sunny{background:url(dist/icons/black/svg/sunny.svg),linear-gradient(transparent,transparent)}.wu-black.wu-tstorms{background:url(dist/icons/black/svg/tstorms.svg),linear-gradient(transparent,transparent)}.wu-black.wu-unknown{background:url(dist/icons/black/svg/unknown.svg),linear-gradient(transparent,transparent)}.wu-white.wu-chanceflurries{background:url(dist/icons/white/svg/chanceflurries.svg),linear-gradient(transparent,transparent)}.wu-white.wu-chancerain{background:url(dist/icons/white/svg/chancerain.svg),linear-gradient(transparent,transparent)}.wu-white.wu-chancesleet{background:url(dist/icons/white/svg/chancesleet.svg),linear-gradient(transparent,transparent)}.wu-white.wu-chancesnow{background:url(dist/icons/white/svg/chancesnow.svg),linear-gradient(transparent,transparent)}.wu-white.wu-chancetstorms{background:url(dist/icons/white/svg/chancetstorms.svg),linear-gradient(transparent,transparent)}.wu-white.wu-clear{background:url(dist/icons/white/svg/clear.svg),linear-gradient(transparent,transparent)}.wu-white.wu-cloudy{background:url(dist/icons/white/svg/cloudy.svg),linear-gradient(transparent,transparent)}.wu-white.wu-flurries{background:url(dist/icons/white/svg/flurries.svg),linear-gradient(transparent,transparent)}.wu-white.wu-fog{background:url(dist/icons/white/svg/fog.svg),linear-gradient(transparent,transparent)}.wu-white.wu-hazy{background:url(dist/icons/white/svg/hazy.svg),linear-gradient(transparent,transparent)}.wu-white.wu-mostlycloudy{background:url(dist/icons/white/svg/mostlycloudy.svg),linear-gradient(transparent,transparent)}.wu-white.wu-mostlysunny{background:url(dist/icons/white/svg/mostlysunny.svg),linear-gradient(transparent,transparent)}.wu-white.wu-partlycloudy{background:url(dist/icons/white/svg/partlycloudy.svg),linear-gradient(transparent,transparent)}.wu-white.wu-partlysunny{background:url(dist/icons/white/svg/partlysunny.svg),linear-gradient(transparent,transparent)}.wu-white.wu-rain{background:url(dist/icons/white/svg/rain.svg),linear-gradient(transparent,transparent)}.wu-white.wu-sleet{background:url(dist/icons/white/svg/sleet.svg),linear-gradient(transparent,transparent)}.wu-white.wu-snow{background:url(dist/icons/white/svg/snow.svg),linear-gradient(transparent,transparent)}.wu-white.wu-sunny{background:url(dist/icons/white/svg/sunny.svg),linear-gradient(transparent,transparent)}.wu-white.wu-tstorms{background:url(dist/icons/white/svg/tstorms.svg),linear-gradient(transparent,transparent)}.wu-white.wu-unknown{background:url(dist/icons/white/svg/unknown.svg),linear-gradient(transparent,transparent)}.no-svg .wu-16.wu-black{background-image:url(dist/icons/black/png/16x16/_spritesheet.png)}.no-svg .wu-32.wu-black{background-image:url(dist/icons/black/png/32x32/_spritesheet.png)}.no-svg .wu-64.wu-black{background-image:url(dist/icons/black/png/64x64/_spritesheet.png)}.no-svg .wu-128.wu-black{background-image:url(dist/icons/black/png/128x128/_spritesheet.png)}.no-svg .wu-256.wu-black{background-image:url(dist/icons/black/png/256x256/_spritesheet.png)}.no-svg .wu-16.wu-white{background-image:url(dist/icons/white/png/16x16/_spritesheet.png)}.no-svg .wu-32.wu-white{background-image:url(dist/icons/white/png/32x32/_spritesheet.png)}.no-svg .wu-64.wu-white{background-image:url(dist/icons/white/png/64x64/_spritesheet.png)}.no-svg .wu-128.wu-white{background-image:url(dist/icons/white/png/128x128/_spritesheet.png)}.no-svg .wu-256.wu-white{background-image:url(dist/icons/white/png/256x256/_spritesheet.png)}.no-svg .wu-16.wu-chanceflurries{background-position:-5px -5px}.no-svg .wu-16.wu-chancerain{background-position:-31px -5px}.no-svg .wu-16.wu-chancesleet{background-position:-57px -5px}.no-svg .wu-16.wu-chancesnow{background-position:-83px -5px}.no-svg .wu-16.wu-chancetstorms{background-position:-5px -31px}.no-svg .wu-16.wu-clear{background-position:-31px -31px}.no-svg .wu-16.wu-cloudy{background-position:-57px -31px}.no-svg .wu-16.wu-flurries{background-position:-83px -31px}.no-svg .wu-16.wu-fog{background-position:-5px -57px}.no-svg .wu-16.wu-hazy{background-position:-31px -57px}.no-svg .wu-16.wu-mostlycloudy{background-position:-57px -57px}.no-svg .wu-16.wu-mostlysunny{background-position:-83px -57px}.no-svg .wu-16.wu-partlycloudy{background-position:-5px -83px}.no-svg .wu-16.wu-partlysunny{background-position:-31px -83px}.no-svg .wu-16.wu-rain{background-position:-57px -83px}.no-svg .wu-16.wu-sleet{background-position:-83px -83px}.no-svg .wu-16.wu-snow{background-position:-109px -5px}.no-svg .wu-16.wu-sunny{background-position:-109px -31px}.no-svg .wu-16.wu-tstorms{background-position:-109px -57px}.no-svg .wu-16.wu-unknown{background-position:-109px -83px}.no-svg .wu-32.wu-chanceflurries{background-position:0 0}.no-svg .wu-32.wu-chancerain{background-position:-32px 0}.no-svg .wu-32.wu-chancesleet{background-position:-64px 0}.no-svg .wu-32.wu-chancesnow{background-position:-96px 0}.no-svg .wu-32.wu-chancetstorms{background-position:0 -32px}.no-svg .wu-32.wu-clear{background-position:-32px -32px}.no-svg .wu-32.wu-cloudy{background-position:-64px -32px}.no-svg .wu-32.wu-flurries{background-position:-96px -32px}.no-svg .wu-32.wu-fog{background-position:0 -64px}.no-svg .wu-32.wu-hazy{background-position:-32px -64px}.no-svg .wu-32.wu-mostlycloudy{background-position:-64px -64px}.no-svg .wu-32.wu-mostlysunny{background-position:-96px -64px}.no-svg .wu-32.wu-partlycloudy{background-position:0 -96px}.no-svg .wu-32.wu-partlysunny{background-position:-32px -96px}.no-svg .wu-32.wu-rain{background-position:-64px -96px}.no-svg .wu-32.wu-sleet{background-position:-96px -96px}.no-svg .wu-32.wu-snow{background-position:-128px 0}.no-svg .wu-32.wu-sunny{background-position:-128px -32px}.no-svg .wu-32.wu-tstorms{background-position:-128px -64px}.no-svg .wu-32.wu-unknown{background-position:-128px -96px}.no-svg .wu-64.wu-chanceflurries{background-position:-5px -5px}.no-svg .wu-64.wu-chancerain{background-position:-79px -5px}.no-svg .wu-64.wu-chancesleet{background-position:-153px -5px}.no-svg .wu-64.wu-chancesnow{background-position:-227px -5px}.no-svg .wu-64.wu-chancetstorms{background-position:-5px -79px}.no-svg .wu-64.wu-clear{background-position:-79px -79px}.no-svg .wu-64.wu-cloudy{background-position:-153px -79px}.no-svg .wu-64.wu-flurries{background-position:-227px -79px}.no-svg .wu-64.wu-fog{background-position:-5px -153px}.no-svg .wu-64.wu-hazy{background-position:-79px -153px}.no-svg .wu-64.wu-mostlycloudy{background-position:-153px -153px}.no-svg .wu-64.wu-mostlysunny{background-position:-227px -153px}.no-svg .wu-64.wu-partlycloudy{background-position:-5px -227px}.no-svg .wu-64.wu-partlysunny{background-position:-79px -227px}.no-svg .wu-64.wu-rain{background-position:-153px -227px}.no-svg .wu-64.wu-sleet{background-position:-227px -227px}.no-svg .wu-64.wu-snow{background-position:-301px -5px}.no-svg .wu-64.wu-sunny{background-position:-301px -79px}.no-svg .wu-64.wu-tstorms{background-position:-301px -153px}.no-svg .wu-64.wu-unknown{background-position:-301px -227px}.no-svg .wu-128.wu-chanceflurries{background-position:-5px -5px}.no-svg .wu-128.wu-chancerain{background-position:-143px -5px}.no-svg .wu-128.wu-chancesleet{background-position:-281px -5px}.no-svg .wu-128.wu-chancesnow{background-position:-419px -5px}.no-svg .wu-128.wu-chancetstorms{background-position:-5px -143px}.no-svg .wu-128.wu-clear{background-position:-143px -143px}.no-svg .wu-128.wu-cloudy{background-position:-281px -143px}.no-svg .wu-128.wu-flurries{background-position:-419px -143px}.no-svg .wu-128.wu-fog{background-position:-5px -281px}.no-svg .wu-128.wu-hazy{background-position:-143px -281px}.no-svg .wu-128.wu-mostlycloudy{background-position:-281px -281px}.no-svg .wu-128.wu-mostlysunny{background-position:-419px -281px}.no-svg .wu-128.wu-partlycloudy{background-position:-5px -419px}.no-svg .wu-128.wu-partlysunny{background-position:-143px -419px}.no-svg .wu-128.wu-rain{background-position:-281px -419px}.no-svg .wu-128.wu-sleet{background-position:-419px -419px}.no-svg .wu-128.wu-snow{background-position:-557px -5px}.no-svg .wu-128.wu-sunny{background-position:-557px -143px}.no-svg .wu-128.wu-tstorms{background-position:-557px -281px}.no-svg .wu-128.wu-unknown{background-position:-557px -419px}.no-svg .wu-256.wu-chanceflurries{background-position:-5px -5px}.no-svg .wu-256.wu-chancerain{background-position:-271px -5px}.no-svg .wu-256.wu-chancesleet{background-position:-537px -5px}.no-svg .wu-256.wu-chancesnow{background-position:-803px -5px}.no-svg .wu-256.wu-chancetstorms{background-position:-5px -271px}.no-svg .wu-256.wu-clear{background-position:-271px -271px}.no-svg .wu-256.wu-cloudy{background-position:-537px -271px}.no-svg .wu-256.wu-flurries{background-position:-803px -271px}.no-svg .wu-256.wu-fog{background-position:-5px -537px}.no-svg .wu-256.wu-hazy{background-position:-271px -537px}.no-svg .wu-256.wu-mostlycloudy{background-position:-537px -537px}.no-svg .wu-256.wu-mostlysunny{background-position:-803px -537px}.no-svg .wu-256.wu-partlycloudy{background-position:-5px -803px}.no-svg .wu-256.wu-partlysunny{background-position:-271px -803px}.no-svg .wu-256.wu-rain{background-position:-537px -803px}.no-svg .wu-256.wu-sleet{background-position:-803px -803px}.no-svg .wu-256.wu-snow{background-position:-1069px -5px}.no-svg .wu-256.wu-sunny{background-position:-1069px -271px}.no-svg .wu-256.wu-tstorms{background-position:-1069px -537px}.no-svg .wu-256.wu-unknown{background-position:-1069px -803px}
+.wu {
+  display: inline-block;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
+}
+
+.wu-16 { width: 16px; height: 16px; }
+.wu-32 { width: 32px; height: 32px; }
+.wu-64 { width: 64px; height: 64px; }
+.wu-128 { width: 128px; height: 128px; }
+.wu-256 { width: 256px; height: 256px; }
+
+.wu-black.wu-chanceflurries { background: url(dist/icons/black/svg/chanceflurries.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-chancerain { background: url(dist/icons/black/svg/chancerain.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-chancesleet { background: url(dist/icons/black/svg/chancesleet.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-chancesnow { background: url(dist/icons/black/svg/chancesnow.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-chancetstorms { background: url(dist/icons/black/svg/chancetstorms.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-clear { background: url(dist/icons/black/svg/clear.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-cloudy { background: url(dist/icons/black/svg/cloudy.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-flurries { background: url(dist/icons/black/svg/flurries.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-fog { background: url(dist/icons/black/svg/fog.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-hazy { background: url(dist/icons/black/svg/hazy.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-mostlycloudy { background: url(dist/icons/black/svg/mostlycloudy.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-mostlysunny { background: url(dist/icons/black/svg/mostlysunny.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-partlycloudy { background: url(dist/icons/black/svg/partlycloudy.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-partlysunny { background: url(dist/icons/black/svg/partlysunny.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-rain { background: url(dist/icons/black/svg/rain.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-sleet { background: url(dist/icons/black/svg/sleet.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-snow { background: url(dist/icons/black/svg/snow.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-sunny { background: url(dist/icons/black/svg/sunny.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-tstorms { background: url(dist/icons/black/svg/tstorms.svg), linear-gradient(transparent, transparent); }
+.wu-black.wu-unknown { background: url(dist/icons/black/svg/unknown.svg), linear-gradient(transparent, transparent); }
+
+.wu-white.wu-chanceflurries { background: url(dist/icons/white/svg/chanceflurries.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-chancerain { background: url(dist/icons/white/svg/chancerain.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-chancesleet { background: url(dist/icons/white/svg/chancesleet.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-chancesnow { background: url(dist/icons/white/svg/chancesnow.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-chancetstorms { background: url(dist/icons/white/svg/chancetstorms.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-clear { background: url(dist/icons/white/svg/clear.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-cloudy { background: url(dist/icons/white/svg/cloudy.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-flurries { background: url(dist/icons/white/svg/flurries.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-fog { background: url(dist/icons/white/svg/fog.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-hazy { background: url(dist/icons/white/svg/hazy.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-mostlycloudy { background: url(dist/icons/white/svg/mostlycloudy.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-mostlysunny { background: url(dist/icons/white/svg/mostlysunny.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-partlycloudy { background: url(dist/icons/white/svg/partlycloudy.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-partlysunny { background: url(dist/icons/white/svg/partlysunny.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-rain { background: url(dist/icons/white/svg/rain.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-sleet { background: url(dist/icons/white/svg/sleet.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-snow { background: url(dist/icons/white/svg/snow.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-sunny { background: url(dist/icons/white/svg/sunny.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-tstorms { background: url(dist/icons/white/svg/tstorms.svg), linear-gradient(transparent, transparent); }
+.wu-white.wu-unknown { background: url(dist/icons/white/svg/unknown.svg), linear-gradient(transparent, transparent); }
+
+.no-svg .wu-16.wu-black { background-image: url(dist/icons/black/png/16x16/_spritesheet.png); }
+.no-svg .wu-32.wu-black { background-image: url(dist/icons/black/png/32x32/_spritesheet.png); }
+.no-svg .wu-64.wu-black { background-image: url(dist/icons/black/png/64x64/_spritesheet.png); }
+.no-svg .wu-128.wu-black { background-image: url(dist/icons/black/png/128x128/_spritesheet.png); }
+.no-svg .wu-256.wu-black { background-image: url(dist/icons/black/png/256x256/_spritesheet.png); }
+
+.no-svg .wu-16.wu-white { background-image: url(dist/icons/white/png/16x16/_spritesheet.png); }
+.no-svg .wu-32.wu-white { background-image: url(dist/icons/white/png/32x32/_spritesheet.png); }
+.no-svg .wu-64.wu-white { background-image: url(dist/icons/white/png/64x64/_spritesheet.png); }
+.no-svg .wu-128.wu-white { background-image: url(dist/icons/white/png/128x128/_spritesheet.png); }
+.no-svg .wu-256.wu-white { background-image: url(dist/icons/white/png/256x256/_spritesheet.png); }
+
+.no-svg .wu-16.wu-chanceflurries { background-position: -5px -5px; }
+.no-svg .wu-16.wu-chancerain { background-position: -31px -5px; }
+.no-svg .wu-16.wu-chancesleet { background-position: -57px -5px; }
+.no-svg .wu-16.wu-chancesnow { background-position: -83px -5px; }
+.no-svg .wu-16.wu-chancetstorms { background-position: -5px -31px; }
+.no-svg .wu-16.wu-clear { background-position: -31px -31px; }
+.no-svg .wu-16.wu-cloudy { background-position: -57px -31px; }
+.no-svg .wu-16.wu-flurries { background-position: -83px -31px; }
+.no-svg .wu-16.wu-fog { background-position: -5px -57px; }
+.no-svg .wu-16.wu-hazy { background-position: -31px -57px; }
+.no-svg .wu-16.wu-mostlycloudy { background-position: -57px -57px; }
+.no-svg .wu-16.wu-mostlysunny { background-position: -83px -57px; }
+.no-svg .wu-16.wu-partlycloudy { background-position: -5px -83px; }
+.no-svg .wu-16.wu-partlysunny { background-position: -31px -83px; }
+.no-svg .wu-16.wu-rain { background-position: -57px -83px; }
+.no-svg .wu-16.wu-sleet { background-position: -83px -83px; }
+.no-svg .wu-16.wu-snow { background-position: -109px -5px; }
+.no-svg .wu-16.wu-sunny { background-position: -109px -31px; }
+.no-svg .wu-16.wu-tstorms { background-position: -109px -57px; }
+.no-svg .wu-16.wu-unknown { background-position: -109px -83px; }
+
+.no-svg .wu-32.wu-chanceflurries { background-position: 0 0; }
+.no-svg .wu-32.wu-chancerain { background-position: -32px 0; }
+.no-svg .wu-32.wu-chancesleet { background-position: -64px 0; }
+.no-svg .wu-32.wu-chancesnow { background-position: -96px 0; }
+.no-svg .wu-32.wu-chancetstorms { background-position: 0 -32px; }
+.no-svg .wu-32.wu-clear { background-position: -32px -32px; }
+.no-svg .wu-32.wu-cloudy { background-position: -64px -32px; }
+.no-svg .wu-32.wu-flurries { background-position: -96px -32px; }
+.no-svg .wu-32.wu-fog { background-position: 0 -64px; }
+.no-svg .wu-32.wu-hazy { background-position: -32px -64px; }
+.no-svg .wu-32.wu-mostlycloudy { background-position: -64px -64px; }
+.no-svg .wu-32.wu-mostlysunny { background-position: -96px -64px; }
+.no-svg .wu-32.wu-partlycloudy { background-position: 0 -96px; }
+.no-svg .wu-32.wu-partlysunny { background-position: -32px -96px; }
+.no-svg .wu-32.wu-rain { background-position: -64px -96px; }
+.no-svg .wu-32.wu-sleet { background-position: -96px -96px; }
+.no-svg .wu-32.wu-snow { background-position: -128px 0; }
+.no-svg .wu-32.wu-sunny { background-position: -128px -32px; }
+.no-svg .wu-32.wu-tstorms { background-position: -128px -64px; }
+.no-svg .wu-32.wu-unknown { background-position: -128px -96px; }
+
+.no-svg .wu-64.wu-chanceflurries { background-position: -5px -5px; }
+.no-svg .wu-64.wu-chancerain { background-position: -79px -5px; }
+.no-svg .wu-64.wu-chancesleet { background-position: -153px -5px; }
+.no-svg .wu-64.wu-chancesnow { background-position: -227px -5px; }
+.no-svg .wu-64.wu-chancetstorms { background-position: -5px -79px; }
+.no-svg .wu-64.wu-clear { background-position: -79px -79px; }
+.no-svg .wu-64.wu-cloudy { background-position: -153px -79px; }
+.no-svg .wu-64.wu-flurries { background-position: -227px -79px; }
+.no-svg .wu-64.wu-fog { background-position: -5px -153px; }
+.no-svg .wu-64.wu-hazy { background-position: -79px -153px; }
+.no-svg .wu-64.wu-mostlycloudy { background-position: -153px -153px; }
+.no-svg .wu-64.wu-mostlysunny { background-position: -227px -153px; }
+.no-svg .wu-64.wu-partlycloudy { background-position: -5px -227px; }
+.no-svg .wu-64.wu-partlysunny { background-position: -79px -227px; }
+.no-svg .wu-64.wu-rain { background-position: -153px -227px; }
+.no-svg .wu-64.wu-sleet { background-position: -227px -227px; }
+.no-svg .wu-64.wu-snow { background-position: -301px -5px; }
+.no-svg .wu-64.wu-sunny { background-position: -301px -79px; }
+.no-svg .wu-64.wu-tstorms { background-position: -301px -153px; }
+.no-svg .wu-64.wu-unknown { background-position: -301px -227px; }
+
+.no-svg .wu-128.wu-chanceflurries { background-position: -5px -5px; }
+.no-svg .wu-128.wu-chancerain { background-position: -143px -5px; }
+.no-svg .wu-128.wu-chancesleet { background-position: -281px -5px; }
+.no-svg .wu-128.wu-chancesnow { background-position: -419px -5px; }
+.no-svg .wu-128.wu-chancetstorms { background-position: -5px -143px; }
+.no-svg .wu-128.wu-clear { background-position: -143px -143px; }
+.no-svg .wu-128.wu-cloudy { background-position: -281px -143px; }
+.no-svg .wu-128.wu-flurries { background-position: -419px -143px; }
+.no-svg .wu-128.wu-fog { background-position: -5px -281px; }
+.no-svg .wu-128.wu-hazy { background-position: -143px -281px; }
+.no-svg .wu-128.wu-mostlycloudy { background-position: -281px -281px; }
+.no-svg .wu-128.wu-mostlysunny { background-position: -419px -281px; }
+.no-svg .wu-128.wu-partlycloudy { background-position: -5px -419px; }
+.no-svg .wu-128.wu-partlysunny { background-position: -143px -419px; }
+.no-svg .wu-128.wu-rain { background-position: -281px -419px; }
+.no-svg .wu-128.wu-sleet { background-position: -419px -419px; }
+.no-svg .wu-128.wu-snow { background-position: -557px -5px; }
+.no-svg .wu-128.wu-sunny { background-position: -557px -143px; }
+.no-svg .wu-128.wu-tstorms { background-position: -557px -281px; }
+.no-svg .wu-128.wu-unknown { background-position: -557px -419px; }
+
+.no-svg .wu-256.wu-chanceflurries { background-position: -5px -5px; }
+.no-svg .wu-256.wu-chancerain { background-position: -271px -5px; }
+.no-svg .wu-256.wu-chancesleet { background-position: -537px -5px; }
+.no-svg .wu-256.wu-chancesnow { background-position: -803px -5px; }
+.no-svg .wu-256.wu-chancetstorms { background-position: -5px -271px; }
+.no-svg .wu-256.wu-clear { background-position: -271px -271px; }
+.no-svg .wu-256.wu-cloudy { background-position: -537px -271px; }
+.no-svg .wu-256.wu-flurries { background-position: -803px -271px; }
+.no-svg .wu-256.wu-fog { background-position: -5px -537px; }
+.no-svg .wu-256.wu-hazy { background-position: -271px -537px; }
+.no-svg .wu-256.wu-mostlycloudy { background-position: -537px -537px; }
+.no-svg .wu-256.wu-mostlysunny { background-position: -803px -537px; }
+.no-svg .wu-256.wu-partlycloudy { background-position: -5px -803px; }
+.no-svg .wu-256.wu-partlysunny { background-position: -271px -803px; }
+.no-svg .wu-256.wu-rain { background-position: -537px -803px; }
+.no-svg .wu-256.wu-sleet { background-position: -803px -803px; }
+.no-svg .wu-256.wu-snow { background-position: -1069px -5px; }
+.no-svg .wu-256.wu-sunny { background-position: -1069px -271px; }
+.no-svg .wu-256.wu-tstorms { background-position: -1069px -537px; }
+.no-svg .wu-256.wu-unknown { background-position: -1069px -803px; }
+
+
+
+

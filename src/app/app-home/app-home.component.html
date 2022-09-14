@@ -1,0 +1,28 @@
+<div class="header">
+  <div class="header_navbar">
+    <a href="#" class="logo" style="position: absolute">
+      <img src="https://svgshare.com/i/jDX.svg">
+    </a>
+
+    <form class="search_box" *ngIf="!isHomePage">
+      <input #input class="input_field" placeholder="Enter city name..." type="text">
+      <div class="vertical_separator"></div>
+      <button type="submit" (click)="sendRequest(input.value)" class="search_button">
+        <img src="https://svgshare.com/i/jEj.svg" height="20px" width="20px">
+      </button>
+    </form>
+  </div>
+</div>
+<div class="header_border">
+  <div class="color_line"></div>
+  <div class="color_line" style="background: #FFB0CA"></div>
+  <div class="color_line" style="background: #00F0FF"></div>
+  <div class="color_line" style="background: #0075FF"></div>
+  <div class="color_line" style="background: #CC00FF"></div>
+  <div class="color_line" style="background: #00FF57" ></div>
+</div>
+
+<div [@routeAnims]="getRouteAnimationData()">
+  <router-outlet></router-outlet>
+</div>
+

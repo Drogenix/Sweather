@@ -1,0 +1,93 @@
+<div class="weather_info_container">
+  <div class="weather_navbar">
+    <a href="/weather#today" class="navbar_item">Today</a>
+    <a href="/weather#weekend" class="navbar_item">Weekend</a>
+    <a href="/weather#month" class="navbar_item">Month</a>
+  </div>
+  <div class="weather_content">
+    <div class="weather_container">
+      <div class="weather_general">
+        <div class="day_weather" id="today">
+          <p class="title">{{city}}</p>
+          <div class="weather_info">
+            <div class="day_state">
+              <img src="{{monthWeather[0].icon}}" height="150px" width="150px">
+              <p>{{monthWeather[0].conditions}}</p>
+            </div>
+            <div class="day_temp">
+              <p class="temp">{{monthWeather[0].temp | number: '1.0-0'}}<span> C°</span></p>
+              <p class="day_night_temp">DAY {{monthWeather[0].tempmax | number: '1.0-0'}}° | <span>NIGHT {{monthWeather[0].tempmin | number: '1.0-0'}}°</span></p>
+            </div>
+          </div>
+        </div>
+        <div class="day_weather options">
+          <p class="title" style="padding: 0 10px">Other information</p>
+          <div class="sunrise">
+            <div class="temp_like">
+              <p class="temp">{{monthWeather[0].feelslike | number: '1.0-0'}}<span> C°</span></p>
+              <p class="feels_like">Feels like</p>
+            </div>
+            <div class="sun_info">
+              <img src="https://svgshare.com/i/jxc.svg" height="75px" width="90px" class="sun_icon">
+              <div class="timelines">
+                <p><span><img src="https://svgshare.com/i/jM1.svg"></span> {{monthWeather[0].sunrise.slice(0,5)}} am  <span><img src="https://svgshare.com/i/jMt.svg"></span>{{monthWeather[0].sunset.slice(0,5)}} pm</p>
+              </div>
+            </div>
+          </div>
+          <div class="horizontal_separator"></div>
+          <div class="weather_options">
+            <div class="options_field">
+              <p><img src="https://svgshare.com/i/jKb.svg" id="pressure">Pressure</p>
+              <p>{{monthWeather[0].pressure | number: '1.0-0'}}°</p>
+            </div>
+            <div class="options_field">
+              <p><img src="https://svgshare.com/i/jN2.svg" id="wind">Wind</p>
+              <p>{{monthWeather[0].windspeed | number: '1.0-0'}} mph</p>
+            </div>
+            <div class="options_field">
+              <p><img src="https://svgshare.com/i/jN3.svg" id="humidity">Humidity</p>
+              <p>{{monthWeather[0].humidity}}%</p>
+            </div>
+            <div class="options_field" style="border: 0;" >
+              <p><img src="https://svgshare.com/i/jMP.svg" id="visibility">Visibility</p>
+              <p>{{monthWeather[0].visibility}} mi</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <app-daily [dailyWeather]="dailyWeather"></app-daily>
+      <app-weekend id="weekend" [weekendWeather]="weekendWeather"></app-weekend>
+      <app-month id="month" [monthWeather]="monthWeather" [city]="city"></app-month>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <a href="#" class="logo">
+    <img src="https://svgshare.com/i/jDX.svg">
+  </a>
+  <div class="footer_info">
+    <div class="footer_links">
+      <div class="links align-center">
+        <p class="links_title">Links</p>
+        <a href="https://www.wunderground.com/">Weather Underground</a>
+        <a href="https://weather.com/">The Weather Company</a>
+      </div>
+      <div class="links align-center">
+        <p class="links_title">API</p>
+        <a href="https://visualcrossing.com">Visual Crossing API</a>
+      </div>
+    </div>
+    <div class="footer_copyright align-center">
+      <img src="https://svgshare.com/i/jVU.svg">
+      <p>© Copyright TWC Product and Technology LLC 2022</p>
+    </div>
+  </div>
+  <div class="footer_socials align-center">
+    <p class="links_title">Follow us</p>
+    <div class="socials_container">
+      <a href="https://instagram.com/drogenixx"><img src="https://svgshare.com/i/jW8.svg"></a>
+      <a href="https://t.me/YeahBanNut"><img src="https://svgshare.com/i/jVV.svg"></a>
+      <a href="https://vk.com/gundoneee"><img src="https://svgshare.com/i/jVH.svg"></a>
+    </div>
+  </div>
+</div>
