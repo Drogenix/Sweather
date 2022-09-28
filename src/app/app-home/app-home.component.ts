@@ -1,7 +1,7 @@
-import {Component, OnInit, DoCheck,} from '@angular/core';
-import {ChildrenOutletContexts, Router} from "@angular/router";
-import {WeatherApiService} from "../weather-api.service";
+import {Component, DoCheck,} from '@angular/core';
+import {ChildrenOutletContexts, NavigationError, Router} from "@angular/router";
 import {animate, group, keyframes, query, style, transition, trigger} from "@angular/animations";
+import {WeatherApiService} from "../api-service/weather-api.service";
 
 @Component({
   selector: 'app-home',
@@ -9,7 +9,7 @@ import {animate, group, keyframes, query, style, transition, trigger} from "@ang
   styleUrls: ['./app-home.component.css'],
   animations:[
       trigger('routeAnims', [
-        transition('homePage<=>weatherPage', [
+        transition('*<=>*', [
           style({ position: 'relative' }),
           query(':enter, :leave', [
             style({
@@ -19,14 +19,14 @@ import {animate, group, keyframes, query, style, transition, trigger} from "@ang
               opacity:0,
               width: '100%'
             })
-          ]),
+          ],{optional:true}),
           query(':leave', [
             style({opacity:1})
-          ]),
+          ],{optional:true}),
           group([
             query(':leave', [
               animate('750ms ease-out', style({ opacity: 0 }))
-            ]),
+            ],{optional:true}),
             query(':enter', [
               animate('1500ms',keyframes([
                 style({opacity:0, offset:0.5}),
@@ -35,7 +35,7 @@ import {animate, group, keyframes, query, style, transition, trigger} from "@ang
 
 
               )
-            ])
+            ],{optional:true})
           ]),
         ]),
 
@@ -44,34 +44,35 @@ import {animate, group, keyframes, query, style, transition, trigger} from "@ang
 
       ]
 })
-export class AppHomeComponent implements OnInit, DoCheck{
+export class AppHomeComponent implements DoCheck{
 
   isHomePage: boolean = false;
-  status:string;
-  constructor(private router: Router, private  service: WeatherApiService, private contexts: ChildrenOutletContexts) {
 
+  status:string;
+
+  constructor(private router: Router, private weatherApi: WeatherApiService, private contexts: ChildrenOutletContexts) {
+    this.router.events.subscribe((event)=>
+    {
+      if(event instanceof NavigationError)
+      {
+        window.alert('Возникла ошибка, попробуйте выполнить действия снова.')
+      }
+    })
   }
   getRouteAnimationData()
   {
     return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
   }
 
-  ngOnInit(): void {
-
-  }
   ngDoCheck():void
   {
     this.isHomePage = this.router.url == '/search';
   }
 
-  sendRequest(city: string) {
-    this.service.city = city;
-    var isGotResponse = this.service.sendTestResponse();
-    if (isGotResponse)
-    {
-      this.router.navigate(['weather']);
-    }
+  searchButtonClicked(city:string)
+  {
+    this.weatherApi.city = city;
 
+    this.router.navigate(['/weather']);
   }
-
 }

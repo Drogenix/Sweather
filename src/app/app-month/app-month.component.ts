@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {dayWeather} from "../data-models/dayweather";
+import {Dayweather} from "../data-models/dayweather";
 
 @Component({
   selector: 'app-month',
@@ -8,7 +8,7 @@ import {dayWeather} from "../data-models/dayweather";
 })
 export class AppMonthComponent implements OnInit {
 
-  @Input()monthWeather: dayWeather[] = [];
+  @Input()monthWeather: Dayweather[] = [];
 
   @Input()city:string = '';
   constructor() { }

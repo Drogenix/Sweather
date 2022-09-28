@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {dayWeather} from "../data-models/dayweather";
-import {WeatherApiService} from "../weather-api.service";
+import {Dayweather} from "../data-models/dayweather";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-weather-info',
@@ -12,114 +12,109 @@ export class WeatherInfoComponent implements OnInit {
   city: string = '';
 
   // Weather info for a month.
-  monthWeather: dayWeather[] = [];
+  monthWeather: Dayweather[] = [];
 
-  weekendWeather: dayWeather[] = [];
+  weekendWeather: Dayweather[] = [];
 
   // Detailed info about this day.
-  dailyWeather: dayWeather[] = [];
+  dailyWeather: Dayweather[] = [];
 
-  constructor(private service: WeatherApiService) {
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void
   {
-    this.service.getDailyInfo().subscribe(response => {
+    this.route.data.subscribe(({dailyInfo}) => {
 
-      var jsonObj = response.body;
+      const jsonObj = dailyInfo.days[0];
 
-      this.dailyWeather = jsonObj.days[0].hours;
+      this.dailyWeather = jsonObj.hours;
 
       for (let item of this.dailyWeather) {
         switch (item.conditions) {
           case 'Rain':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/6.svg";
+            item.icon = "assets/icons/white/svg/rain.svg";
             break;
           case 'Sunny':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/32.svg";
+            item.icon = "assets/icons/white/svg/sunny.svg";
             break;
           case 'Partially cloudy':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/20.svg";
+            item.icon = "assets/icons/white/svg/partlycloudy.svg";
             break;
           case 'Rain, Partially cloudy':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/9.svg";
+            item.icon = "assets/icons/white/svg/chancerain.svg";
             break;
           case 'Clear':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/32.svg";
+            item.icon = "assets/icons/white/svg/clear.svg";
             break;
           case 'Overcast':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/26.svg";
+            item.icon = "assets/icons/white/svg/cloudy.svg";
             break;
           case 'Rain, Overcast':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/39.svg";
+            item.icon = "assets/icons/white/svg/chancerain.svg";
             break;
           case 'Snow':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/13.svg";
+            item.icon = "assets/icons/white/svg/snow.svg";
             break;
           case 'Snow, Overcast':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/41.svg";
+            item.icon = "assets/icons/white/svg/snow.svg";
             break;
           case 'Snow, Rain, Overcast':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/5.svg";
+            item.icon = "assets/icons/white/svg/sleet.svg";
             break;
           case 'Snow, Rain, Partially cloudy':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/5.svg";
+            item.icon = "assets/icons/white/svg/chancesnow.svg";
             break;
         }
       }
     });
 
-    this.service.getMonthInfo().subscribe(response => {
+    this.route.data.subscribe(({monthlyInfo}) => {
 
-      var jsonObj = response.body;
+      const jsonObj = monthlyInfo;
 
       this.monthWeather = jsonObj.days;
-
       this.city = jsonObj.resolvedAddress;
 
       for (let item of this.monthWeather) {
         switch (item.conditions) {
           case 'Rain':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/6.svg";
+            item.icon = "assets/icons/white/svg/rain.svg";
             break;
           case 'Sunny':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/32.svg";
+            item.icon = "assets/icons/white/svg/sunny.svg";
             break;
           case 'Partially cloudy':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/20.svg";
+            item.icon = "assets/icons/white/svg/partlycloudy.svg";
             break;
           case 'Rain, Partially cloudy':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/9.svg";
+            item.icon = "assets/icons/white/svg/chancerain.svg";
             break;
           case 'Clear':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/32.svg";
+            item.icon = "assets/icons/white/svg/clear.svg";
             break;
           case 'Overcast':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/26.svg";
+            item.icon = "assets/icons/white/svg/cloudy.svg";
             break;
           case 'Rain, Overcast':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/39.svg";
+            item.icon = "assets/icons/white/svg/chancerain.svg";
             break;
           case 'Snow':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/13.svg";
+            item.icon = "assets/icons/white/svg/snow.svg";
             break;
           case 'Snow, Overcast':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/41.svg";
+            item.icon = "assets/icons/white/svg/snow.svg";
             break;
           case 'Snow, Rain, Overcast':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/5.svg";
+            item.icon = "assets/icons/white/svg/sleet.svg";
             break;
           case 'Snow, Rain, Partially cloudy':
-            item.icon = "https://www.wunderground.com/static/i/c/v4/5.svg";
+            item.icon = "assets/icons/white/svg/chancesnow.svg";
             break;
         }
       }
-
       this.weekendWeather = this.monthWeather.slice(0, 7);
     });
-
-
-
   }
 
 }

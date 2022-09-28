@@ -1,18 +1,18 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {dayWeather} from "../data-models/dayweather";
+import {Component, Input} from '@angular/core';
+import {Dayweather} from "../data-models/dayweather";
 
 @Component({
   selector: 'app-daily',
   templateUrl: './app-daily.component.html',
   styleUrls: ['./app-daily.component.css']
 })
-export class AppDailyComponent implements OnInit {
+export class AppDailyComponent{
 
-  @Input()dailyWeather: dayWeather[] = [];
+  @Input()dailyWeather: Dayweather[] = [];
 
-  constructor() { }
+  constructor()
+  {
 
-  ngOnInit(): void {
   }
 
 }

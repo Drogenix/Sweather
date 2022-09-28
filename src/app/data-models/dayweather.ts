@@ -1,4 +1,4 @@
-export interface dayWeather
+export interface Dayweather
 {
   tempmax: number;
   tempmin: number;

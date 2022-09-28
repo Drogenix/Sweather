@@ -12,6 +12,9 @@ import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { AppMonthDetailedComponent } from './app-month/app-month-detailed/app-month-detailed.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RouterModule} from "@angular/router";
+import {MonthWeatherInfoResolveService} from "./resolvers/weather-info-resolve.service";
+import {DailyWeatherInfoResolveService} from "./resolvers/daily-weather-info-resolve.service";
+import {WeatherApiService} from "./api-service/weather-api.service";
 
 @NgModule({
   declarations: [
@@ -33,15 +36,15 @@ import {RouterModule} from "@angular/router";
         path:'', redirectTo:'search', pathMatch:'full'
       },
       {
-        path:'weather', component:WeatherInfoComponent, data:{animation:'weatherPage'}
+        path:'weather', component:WeatherInfoComponent, runGuardsAndResolvers:'always', data:{animation:'weatherPage'}, resolve:{monthlyInfo: MonthWeatherInfoResolveService, dailyInfo: DailyWeatherInfoResolveService}
       },
       {
-        path:'search', component:AppSearchComponent, data:{animation:'homePage'}
+        path:'search', component:AppSearchComponent, data:{animation:'searchPage'}
       }
-    ])
+    ], {onSameUrlNavigation: 'reload'})
 
   ],
-  providers: [HttpClientModule],
+  providers: [HttpClientModule, WeatherApiService],
   bootstrap: [AppHomeComponent]
 })
 export class AppModule { }

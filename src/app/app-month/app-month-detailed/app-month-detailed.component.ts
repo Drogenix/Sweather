@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {dayWeather} from "../../data-models/dayweather";
-import {animate, animateChild, group, keyframes, query, style, transition, trigger} from "@angular/animations";
+import {Component, Input} from '@angular/core';
+import {Dayweather} from "../../data-models/dayweather";
 
 @Component({
   selector: 'app-month-detailed',
@@ -8,26 +7,19 @@ import {animate, animateChild, group, keyframes, query, style, transition, trigg
   styleUrls: ['./app-month-detailed.component.css'],
 })
 
-export class AppMonthDetailedComponent implements OnInit {
+export class AppMonthDetailedComponent {
 
-  isButClicked:boolean = false;
-  @Input()details: dayWeather;
-  constructor() { }
+  isButClicked:boolean;
 
-  ngOnInit(): void {
+  @Input()details: Dayweather;
 
+  constructor()
+  {
+    this.isButClicked = false;
   }
 
   buttonClicked()
   {
-    if(this.isButClicked)
-    {
-      this.isButClicked = false;
-    }
-    else
-    {
-      this.isButClicked = true;
-
-    }
+    this.isButClicked = !this.isButClicked;
   }
 }
