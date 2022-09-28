@@ -55,7 +55,7 @@ export class AppHomeComponent implements DoCheck{
     {
       if(event instanceof NavigationError)
       {
-        window.alert('Возникла ошибка, попробуйте выполнить действия снова.')
+        window.alert('Возникла ошибка, попробуйте перезагрузить страницу или вернитесь позже.')
       }
     })
   }

@@ -9,58 +9,61 @@ import {environment} from "../../environments/environment.prod";
 })
 export class WeatherApiService {
 
-  private _apiKey: string;
+  private _apiToken: string;
 
-  private _usedTokensCount:number;
+  _usedTokensCount:number = 0;
 
   city:string;
 
   constructor(private http:HttpClient) {
 
+    this._usedTokensCount = 0;
 
-    this._usedTokensCount = 1;
-
-    this.setApiToken();
+    this.changeApiToken();
   }
 
-  private setApiToken()
+  changeApiToken()
   {
-    this._apiKey = JSON.stringify(environment.apiKeys[this._usedTokensCount].token);
+    this._apiToken = JSON.stringify(environment.apiKeys[this._usedTokensCount].token);
 
-    this._apiKey = this._apiKey.substring(1, this._apiKey.length-1)
+    this._apiToken = this._apiToken.substring(1, this._apiToken.length-1)
 
-    this._usedTokensCount += 1;
+    this._usedTokensCount +=1;
   }
 
-  private handleError(error: HttpErrorResponse) {
+  handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
 
       console.error('Возникла ошибка:', error.error);
-    } else {
+    }
+    else{
+      this.changeApiToken();
 
       console.error(
         `Ошибка на сервере: ${error.status}, тело ошибки: `, error.error);
     }
 
-    return throwError(() => new Error('Сервисы не доступны, попробуйте перезагрузить страницу или вернитесь позже.'));
+    return throwError(() =>
+      new Error('Сервисы не доступны, попробуйте перезагрузить страницу или вернитесь позже.')
+    );
   }
 
   getMonthInfo(): Observable<any>
   {
-      const url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/'+this.city+'/2022-07-28/2022-08-28?unitGroup=metric&include=days&key='+ this._apiKey +'&contentType=json';
+      const url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/'+this.city+'/2022-07-28/2022-08-28?unitGroup=metric&include=days&key='+ this._apiToken +'&contentType=json';
 
       return this.http.get<Dayweather[]>(url).pipe(
-        retry(10),
-        catchError(this.handleError)
+        retry(5),
+        catchError(error => this.handleError(error))
       );
   }
    getDailyInfo() : Observable<any>
   {
-    const url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/'+ this.city +'/today?unitGroup=metric&include=hours&key='+ this._apiKey +'&contentType=json';
+    const url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/'+ this.city +'/today?unitGroup=metric&include=hours&key='+ this._apiToken +'&contentType=json';
 
     return this.http.get<Dayweather[]>(url).pipe(
-      retry(10),
-      catchError(this.handleError)
+      retry(5),
+      catchError(error => this.handleError(error))
     );
   }
 }
