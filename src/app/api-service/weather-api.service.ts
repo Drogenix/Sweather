@@ -28,15 +28,15 @@ export class WeatherApiService {
 
     this._apiToken = this._apiToken.substring(1, this._apiToken.length-1)
 
-    this._usedTokensCount +=1;
+    this._usedTokensCount = 1;
   }
 
   handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
-
       console.error('Возникла ошибка:', error.error);
     }
-    else{
+    else if(error.status === 429)
+    {
       this.changeApiToken();
 
       console.error(
