@@ -303,7 +303,7 @@ p
 .sun_info
 {
   display: block;
-  width: 205px;
+  min-width: 205px;
   text-align: center;
   height: 105px;
 }

@@ -3,6 +3,7 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Dayweather} from "../data-models/dayweather";
 import {catchError, Observable, retry, throwError} from "rxjs";
 import {environment} from "../../environments/environment.prod";
+import {DatePipe} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,19 @@ export class WeatherApiService {
 
   getMonthInfo(): Observable<any>
   {
-      const url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/'+this.city+'/2022-07-28/2022-08-28?unitGroup=metric&include=days&key='+ this._apiToken +'&contentType=json';
+    const datePipe: DatePipe = new DatePipe('en-US')
+
+    const now = new Date();
+
+    const nowDateString = datePipe.transform(now, 'YYYY-MM-dd')
+
+    const afterMonth = now.setMonth(now.getMonth()+1, now.getDate());
+
+    const afterMonthDateString = datePipe.transform(afterMonth, 'YYYY-MM-dd')
+
+      const url = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/'+this.city + '/' + nowDateString + '/' + afterMonthDateString +'?unitGroup=metric&include=days&key='+ this._apiToken +'&contentType=json';
+
+      console.log(url);
 
       return this.http.get<Dayweather[]>(url).pipe(
         retry(5),

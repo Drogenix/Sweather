@@ -8,7 +8,7 @@
     <div class="weather_container">
       <div class="weather_general">
         <div class="day_weather" id="today">
-          <p class="title">{{city}}</p>
+          <p class="title">{{monthWeather[0].datetime | date:'MMMM' }}, {{city}}</p>
           <div class="weather_info">
             <div class="day_state">
               <img src="{{monthWeather[0].icon}}" height="150px" width="150px">

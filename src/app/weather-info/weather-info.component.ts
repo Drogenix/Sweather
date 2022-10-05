@@ -74,6 +74,7 @@ export class WeatherInfoComponent implements OnInit {
       const jsonObj = monthlyInfo;
 
       this.monthWeather = jsonObj.days;
+
       this.city = jsonObj.resolvedAddress;
 
       for (let item of this.monthWeather) {
