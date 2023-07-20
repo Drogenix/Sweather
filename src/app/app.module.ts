@@ -1,50 +1,39 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
-import { AppHomeComponent } from './app-home/app-home.component';
-import { WeatherInfoComponent } from './weather-info/weather-info.component';
-import { AppSearchComponent } from './app-search/app-search.component';
-import { AppDailyComponent } from './app-daily/app-daily.component';
-import { AppWeekendComponent } from './app-weekend/app-weekend.component';
-import { AppMonthComponent } from './app-month/app-month.component';
+import { WeatherForecastComponent } from './pages/weather-forecast/weather-forecast.component';
+import { SearchComponent } from './components/search/search.component';
+import { WeekendForecastComponent } from './components/weekend-forecast/weekend-forecast.component';
+import { MonthForecastComponent } from './components/month-forecast/month-forecast.component';
 import {HttpClientModule} from "@angular/common/http";
-import { AppNavbarComponent } from './app-navbar/app-navbar.component';
-import { AppMonthDetailedComponent } from './app-month/app-month-detailed/app-month-detailed.component';
+import { MonthForecastDayDetailsComponent } from './components/month-forecast-day-details/month-forecast-day-details.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {RouterModule} from "@angular/router";
-import {MonthWeatherInfoResolveService} from "./resolvers/weather-info-resolve.service";
-import {DailyWeatherInfoResolveService} from "./resolvers/daily-weather-info-resolve.service";
-import {WeatherApiService} from "./api-service/weather-api.service";
+import {WeatherApiService} from "./core/weather-api.service";
+import {routes} from "./routes";
+import {DailyForecastComponent} from "./components/daily-forecast/daily-forecast.component";
+import {RootComponent} from "./pages/root/root.component";
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
-    AppHomeComponent,
-     WeatherInfoComponent,
-     AppSearchComponent,
-     AppDailyComponent,
-     AppWeekendComponent,
-     AppMonthComponent,
-     AppNavbarComponent,
-     AppMonthDetailedComponent
+     RootComponent,
+     WeatherForecastComponent,
+     SearchComponent,
+     DailyForecastComponent,
+     WeekendForecastComponent,
+     MonthForecastComponent,
+     MonthForecastDayDetailsComponent,
+     SpinnerComponent,
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    RouterModule.forRoot([
-      {
-        path:'', redirectTo:'search', pathMatch:'full'
-      },
-      {
-        path:'weather', component:WeatherInfoComponent, runGuardsAndResolvers:'always', data:{animation:'weatherPage'}, resolve:{monthlyInfo: MonthWeatherInfoResolveService, dailyInfo: DailyWeatherInfoResolveService}
-      },
-      {
-        path:'search', component:AppSearchComponent, data:{animation:'searchPage'}
-      }
-    ], {onSameUrlNavigation: 'reload'})
-
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'}),
+        ReactiveFormsModule
+    ],
   providers: [HttpClientModule, WeatherApiService],
-  bootstrap: [AppHomeComponent]
+  bootstrap: [RootComponent]
 })
 export class AppModule { }

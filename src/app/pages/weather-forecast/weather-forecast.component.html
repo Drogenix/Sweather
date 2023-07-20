@@ -1,0 +1,80 @@
+<ng-container *ngIf="(weatherForecast$ | async) as weatherForecast; else loading">
+  <div class="weather_info_container">
+    <div class="weather_navbar">
+      <a href="/weather#today" class="navbar_item">Today</a>
+      <a href="/weather#weekend" class="navbar_item">Weekend</a>
+      <a href="/weather#month" class="navbar_item">Month</a>
+    </div>
+    <div class="weather_content">
+      <div class="weather_container">
+        <div class="weather_general">
+          <div class="day_weather" id="today">
+            <p class="title">{{weatherForecast.month.days[0].datetime | date:'MMMM' }}, {{weatherForecast.month.resolvedAddress}}</p>
+            <div class="weather_info">
+              <div class="day_state">
+                <img src="{{weatherForecast.month.days[0].icon}}" height="150px" width="150px">
+                <p>{{weatherForecast.month.days[0].conditions}}</p>
+              </div>
+              <div class="day_temp">
+                <p class="temp">{{weatherForecast.month.days[0].temp | number: '1.0-0'}}<span> C°</span></p>
+                <p class="day_night_temp">DAY {{weatherForecast.month.days[0].tempmax | number: '1.0-0'}}° | <span>NIGHT {{weatherForecast.month.days[0].tempmin | number: '1.0-0'}}°</span></p>
+              </div>
+            </div>
+          </div>
+          <div class="day_weather options">
+            <p class="title" style="padding: 0 10px">Other information</p>
+            <div class="sunrise">
+              <div class="temp_like">
+                <p class="temp">{{weatherForecast.month.days[0].feelslike | number: '1.0-0'}}<span> C°</span></p>
+                <p class="feels_like">Feels like</p>
+              </div>
+              <div class="sun_info">
+                <img src="https://svgshare.com/i/jxc.svg" height="75px" width="90px" class="sun_icon">
+                <div class="timelines">
+                  <p><span><img src="https://svgshare.com/i/jM1.svg"></span> {{weatherForecast.month.days[0].sunrise.slice(0,5)}} am  <span><img src="https://svgshare.com/i/jMt.svg"></span>{{weatherForecast.month.days[0].sunset.slice(0,5)}} pm</p>
+                </div>
+              </div>
+            </div>
+            <div class="horizontal_separator"></div>
+            <div class="weather_options">
+              <div class="options_field">
+                <p><img src="https://svgshare.com/i/jKb.svg" id="pressure">Pressure</p>
+                <p>{{weatherForecast.month.days[0].pressure | number: '1.0-0'}}°</p>
+              </div>
+              <div class="options_field">
+                <p><img src="https://svgshare.com/i/jN2.svg" id="wind">Wind</p>
+                <p>{{weatherForecast.month.days[0].windspeed | number: '1.0-0'}} mph</p>
+              </div>
+              <div class="options_field">
+                <p><img src="https://svgshare.com/i/jN3.svg" id="humidity">Humidity</p>
+                <p>{{weatherForecast.month.days[0].humidity}}%</p>
+              </div>
+              <div class="options_field" style="border: 0;" >
+                <p><img src="https://svgshare.com/i/jMP.svg" id="visibility">Visibility</p>
+                <p>{{weatherForecast.month.days[0].visibility}} mi</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-daily-forecast [dailyForecast]="weatherForecast.daily"></app-daily-forecast>
+        <app-weekend-forecast id="weekend" [weekendForecast]="weatherForecast.month.days.slice(0,7)"></app-weekend-forecast>
+        <app-month-forecast id="month" [monthForecast]="weatherForecast.month.days" [city]="weatherForecast.month.resolvedAddress"></app-month-forecast>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <a href="#" class="logo">
+      <img src="https://svgshare.com/i/jDX.svg">
+    </a>
+    <div class="footer_info">
+      <div class="footer_copyright align-center">
+        <img src="https://svgshare.com/i/jVU.svg">
+        <p>© Copyright TWC Product and Technology LLC 2022</p>
+      </div>
+    </div>
+  </div>
+
+</ng-container>
+<ng-template #loading>
+  <app-spinner></app-spinner>
+</ng-template>

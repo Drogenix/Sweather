@@ -1,0 +1,13 @@
+<div class="page_search">
+  <form class="search_box big_box" style="display: flex">
+    <input class="input_field big_field" placeholder="Enter city name..." [formControl]="input" type="text">
+    <div class="vertical_separator" style="height: 25px"></div>
+    <button class="search_button" type="button" (click)="showForecast()">
+      <img alt="none" src="https://svgshare.com/i/jEj.svg" height="25px" width="25px">
+    </button>
+  </form>
+  <ng-container *ngIf="input.touched && input.invalid">
+    <small>This field is required. Enter any city name</small>
+  </ng-container>
+</div>
+

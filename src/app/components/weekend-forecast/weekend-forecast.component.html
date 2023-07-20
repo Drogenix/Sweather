@@ -1,0 +1,10 @@
+<div class="weekend_weather_container align-center">
+  <p class="title">Weekend forecast</p>
+  <div class="weekend_weather">
+    <div class="align-center" *ngFor="let item of weekendForecast">
+      <p class="title">{{item.datetime | date: 'EEE, dd'}}</p>
+      <img src="{{item.icon}}" class="small-img">
+      <p class="title">{{item.tempmax | number: '1.0-0'}}°/<span class="night_temp">  {{item.tempmin | number: '1.0-0'}}°</span></p>
+    </div>
+  </div>
+</div>

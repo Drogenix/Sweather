@@ -1,0 +1,29 @@
+<div class="daily_weather_container">
+  <p class="title align-center">Daily weather</p>
+  <div class="daily_weather">
+    <div class="day_period align-center">
+      <p class="title">Morning</p>
+        <img src="{{dailyForecast[6].icon}}" height="80px" width="80px">
+      <p class="title" style="font-size: 16px; font-weight: bolder; color: #f8e3c0; margin-bottom: 3px">{{dailyForecast[6].conditions}}</p>
+      <p class="title">{{dailyForecast[6].temp | number: '1.0-0'}}C°</p>
+    </div>
+    <div class="day_period align-center">
+      <p class="title">Afternoon</p>
+      <img src="{{dailyForecast[12].icon}}" class="small-img">
+      <p class="title" style="font-size: 16px; font-weight: bolder; color: #f8e3c0; margin-bottom: 3px" >{{dailyForecast[12].conditions}}</p>
+      <p class="title">{{dailyForecast[12].temp | number: '1.0-0'}}C°</p>
+    </div>
+    <div class="day_period align-center">
+      <p class="title">Evening</p>
+      <img src="{{dailyForecast[18].icon}}" class="small-img">
+      <p class="title" style="font-size: 16px; font-weight: bolder; color: #f8e3c0; margin-bottom: 3px">{{dailyForecast[18].conditions}}</p>
+      <p class="title">{{dailyForecast[18].temp | number: '1.0-0'}}C°</p>
+    </div>
+    <div class="day_period align-center">
+      <p class="title">Overnight</p>
+      <img src="{{dailyForecast[22].icon}}" class="small-img">
+      <p class="title" style="font-size: 16px; font-weight: bolder; color: #f8e3c0; margin-bottom: 3px">{{dailyForecast[22].conditions}}</p>
+      <p class="title">{{dailyForecast[22].temp | number: '1.0-0'}}C°</p>
+    </div>
+  </div>
+</div>
