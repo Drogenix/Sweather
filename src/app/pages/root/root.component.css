@@ -68,13 +68,21 @@ nav
   text-shadow: 2px 2px 6px white;
 }
 
+.logo-small{
+  display: none;
+}
+
 @media screen and (max-width: 576px){
-  nav a{
+  .logo{
     display: none;
   }
 
+  .logo-small{
+    display: flex;
+  }
+
   nav{
-    justify-content: center;
+    justify-content: space-between;
   }
 
   :host .router::ng-deep form {
