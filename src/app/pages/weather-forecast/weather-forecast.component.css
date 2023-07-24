@@ -1,0 +1,43 @@
+:host::ng-deep app-error{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  padding: 0 12px;
+}
+
+:host::ng-deep app-error p{
+  max-width: 390px;
+  text-align: center;
+}
+
+@media screen and (max-width: 767px){
+  .day_state p {
+    font-size: 18px;
+  }
+
+  .day_state img{
+    height: 70px;
+    width: 100px;
+  }
+
+  .temp {
+    font-size: 32px;
+  }
+
+  .temp span {
+    font-size: 24px;
+  }
+
+  .day_night_temp {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 576px){
+  .options{
+    flex: 1 1;
+  }
+}

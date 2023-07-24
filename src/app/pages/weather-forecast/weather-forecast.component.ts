@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {WeatherApiService} from "../../core/weather-api.service";
-import {combineLatest, map, Observable, switchMap, tap} from "rxjs";
+import {WeatherService} from "../../core/weather.service";
+import {BehaviorSubject, catchError, combineLatest, map, Observable, of, switchMap, tap} from "rxjs";
 import {Forecast} from "../../core/entities/forecast";
 import {WeatherForecast} from "../../core/entities/weather-forecast";
 
@@ -16,13 +16,28 @@ type GeneralForecast = {
   styleUrls: ['./weather-forecast.component.css']
 })
 export class WeatherForecastComponent implements OnInit{
+
+  private _loadingSubject = new BehaviorSubject<boolean>(false);
+  loading$ = this._loadingSubject.asObservable();
   weatherForecast$:Observable<GeneralForecast>;
 
-  constructor(private weatherApiService:WeatherApiService, private activatedRoute: ActivatedRoute) {}
+  error = '';
+
+  constructor(private weatherApiService:WeatherService, private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
+
     const city$ = this.activatedRoute.queryParams.pipe(
-      map((params)=> params['city']))
+      tap(()=> {
+        this.error = '';
+        this._loadingSubject.next(true);
+      }),
+      map((params)=> {
+        var cityParam = params['city'];
+
+        return cityParam ? cityParam : "Minsk"
+      })
+    )
 
     const monthWeatherForecast$ = city$.pipe(
       switchMap((city:string)=> this.weatherApiService.getMonthWeatherForecast(city)),
@@ -39,10 +54,16 @@ export class WeatherForecastComponent implements OnInit{
     )
 
     this.weatherForecast$ = combineLatest([monthWeatherForecast$, dailyWeatherForecast$]).pipe(
+      catchError(()=>{
+        this.error = "We didn't find any information about this region. Try search another city";
+        this._loadingSubject.next(false)
+
+        return of();
+      }),
+      tap(()=> this._loadingSubject.next(false)),
       map(([monthWeatherForecast, dailyWeatherForecast]) => {
         return {month: monthWeatherForecast, daily: dailyWeatherForecast}
-      })
-    )
+      }))
   }
   private _setIconsPath(weatherForecast: Forecast[]) : Forecast[]{
     for (let forecast of weatherForecast) {

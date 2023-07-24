@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {map, Observable, retry, shareReplay, throwError} from "rxjs";
+import {catchError, map, Observable, retry, shareReplay, throwError} from "rxjs";
 import {environment} from "../../environments/environment.prod";
 import {DatePipe} from "@angular/common";
-import {WeatherForecast} from "./entity/weather-forecast";
-import {Forecast} from "./entity/forecast";
+import {Forecast} from "./entities/forecast";
+import {WeatherForecast} from "./entities/weather-forecast";
 
 const BASE_URL = 'https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/'
 
 @Injectable({
   providedIn: 'root'
 })
-export class WeatherApiService {
+export class WeatherService {
   private _apiKey: string;
   private _usedTokensCount = 0;
   constructor(private http:HttpClient) {
@@ -28,24 +28,15 @@ export class WeatherApiService {
   }
 
   handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      console.error('Возникла ошибка:', error.error);
-    }
-    else if(error.status === 429)
+    if(error.status === 429)
     {
       this.updateApiKey();
-
-      console.error(
-        `Ошибка на сервере: ${error.status}, тело ошибки: `, error.error);
     }
 
-    return throwError(() =>
-      new Error('Сервисы не доступны, попробуйте перезагрузить страницу или вернитесь позже.')
-    );
+    return throwError(error);
   }
 
-  getMonthWeatherForecast(city: string): Observable<WeatherForecast>
-  {
+  getMonthWeatherForecast(city: string) : Observable<WeatherForecast> {
     const datePipe: DatePipe = new DatePipe('en-US')
 
     const now = new Date();
@@ -58,15 +49,16 @@ export class WeatherApiService {
 
     const url = BASE_URL + city + '/' + nowDateString + '/' + afterMonthDateString +'?unitGroup=metric&include=days&key='+ this._apiKey +'&contentType=json';
 
-    return this.http.get<WeatherForecast>(url);
+    return this.http.get<WeatherForecast>(url).pipe(catchError((err)=>this.handleError(err)));
   }
   getDayWeatherForecast(city: string) : Observable<Forecast[]>
   {
     const url = BASE_URL + city +'/today?unitGroup=metric&include=hours&key='+ this._apiKey +'&contentType=json';
 
     return this.http.get<WeatherForecast>(url).pipe(
+      catchError((err)=>this.handleError(err)),
+      retry(1),
       map((dailyForecast)=> dailyForecast.days[0].hours),
-      retry(2),
       shareReplay(1));
   }
 }

@@ -1,5 +1,5 @@
 <div class="month_weather_container">
-  <p class="month_title title"><span style="font-size: 26px; font-weight: bold; color: #f8e3c0">Month weather</span> - {{monthForecast[0].datetime | date:'MMMM' }}, {{city}}</p>
+  <p class="month_title title">Monthly weather</p>
   <div class="month_weather">
     <div class="month_container" *ngFor="let forecast of monthForecast">
       <app-month-forecast-day-details [forecast]="forecast"></app-month-forecast-day-details>

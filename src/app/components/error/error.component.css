@@ -1,0 +1,11 @@
+:host {
+  display: block;
+  color: white;
+}
+
+p{
+  border-radius: 4px;
+  padding: 4px 8px;
+  background: #ffffff38;
+  font-size: 16px;
+}

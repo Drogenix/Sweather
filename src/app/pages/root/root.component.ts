@@ -1,6 +1,7 @@
-import {Component, DoCheck,} from '@angular/core';
-import {ChildrenOutletContexts, Router} from "@angular/router";
+import {Component, OnDestroy, OnInit,} from '@angular/core';
+import {NavigationEnd, Router} from "@angular/router";
 import {animate, group, keyframes, query, style, transition, trigger} from "@angular/animations";
+import {filter, Subject, takeUntil} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -43,18 +44,25 @@ import {animate, group, keyframes, query, style, transition, trigger} from "@ang
 
       ]
 })
-export class RootComponent implements DoCheck{
+export class RootComponent implements OnInit, OnDestroy{
 
-  isHomePage: boolean = false;
+  isNotHomePage: boolean = false;
 
-  constructor(private router: Router, private contexts: ChildrenOutletContexts) {}
-  getRouteAnimationData()
-  {
-    return this.contexts.getContext('primary')?.route?.snapshot?.data?.['animation'];
+  private destroy$ = new Subject<void>();
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      takeUntil(this.destroy$)
+    ).subscribe(() => {
+      this.isNotHomePage = this.router.url != '/';
+    })
   }
 
-  ngDoCheck():void
-  {
-    this.isHomePage = this.router.url == '/search';
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
