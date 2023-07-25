@@ -1,0 +1,46 @@
+.day_forecast{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 12px 20px;
+}
+
+.day-temp{
+  color: white;
+}
+
+.day-condition{
+  flex: 1 1;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+}
+
+.weather-caption{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1;
+}
+
+.weather-day-temp{
+  display: flex;
+}
+
+.weather-temp{
+  display: flex;
+  flex: 1 1;
+}
+
+@media screen and (max-width: 667px){
+  .weather-caption{
+   flex-basis: 100%;
+  }
+
+  .WUPbwxcclV{
+    flex-basis: 100%;
+  }
+
+  .fajsaksf{
+    padding: 12px 6px;
+  }
+}

@@ -1,64 +1,17 @@
 <div class="forecast_container" (click)="buttonClicked()">
-  <div *ngIf="!isButClicked" class="fajsaksf">
-    <div class="aspifkl">
-      <p class="month_day">{{forecast.datetime | date:'cccc, dd'}}</p>
-      <p>{{forecast.tempmax | number: '1.0-0'}}° </p>
-      <p class="night_temp" style="width: 50px"> / {{forecast.tempmin | number: '1.0-0'}}°</p>
-      <img class="month_state" src="{{forecast.icon}}" height="40px" width="40px">
-      <p style="font-size: 16px">{{forecast.conditions}}</p>
-    </div>
-    <div class="WUPbwxcclV" >
-      <p> <img src="https://svgshare.com/i/jN2.svg" height="20px" width="20px"> {{forecast.windspeed | number: '1.0-0'}} mph</p>
+  <div class="fajsaksf">
+    <p class="month_day">{{forecast.datetime | date:'cccc, dd'}}</p>
+    <div class="WUPbwxcclV">
+      <div class="weather-caption">
+        <div class="weather-day-temp">
+          <img class="month_state" src="{{forecast.icon}}" height="40px" width="40px">
+          <div class="weather-temp">
+            <p class="day-temp">{{forecast.tempmax | number: '1.0-0'}}°</p>
+            <p class="night_temp">/{{forecast.tempmin | number: '1.0-0'}}°</p>
+          </div>
+        </div>
+        <p class="day-condition">{{forecast.conditions}}</p>
+      </div>
     </div>
   </div>
-  <div *ngIf="isButClicked" class="day_forecast">
-    <div class="period_detail">
-      <p>{{forecast.datetime | date:'EEE, dd'}} | Day</p>
-      <div class="period_info">
-        <div class="period_temp">
-          <p>{{forecast.tempmax | number: '1.0-0'}}°/</p>
-          <p style="color: #002654; font-size: 34px; position: relative; top: 7px">{{forecast.tempmin | number: '1.0-0'}}°</p>
-          <img src="{{forecast.icon}}" height="40px" width="40px">
-        </div>
-      </div>
-      <div class="period_description">
-        <p>{{forecast.description}}</p>
-      </div>
-    </div>
-    <div class="period_options">
-      <div class="option_container">
-        <div class="alshfas">
-          <img src="https://svgshare.com/i/jN2.svg" height="20px" width="20px">
-          <div>
-            <p>Wind</p>
-            <p style="color: whitesmoke; font-size: 16px; font-weight: bolder">{{forecast.windspeed | number: '1.0-0'}} mph</p>
-          </div>
-        </div>
-        <div class="alshfas">
-          <img src="https://svgshare.com/i/jKb.svg" height="20px" width="20px">
-          <div>
-            <p>Pressure</p>
-            <p style="color: whitesmoke; font-size: 16px; font-weight: bolder">{{forecast.pressure | number: '1.0-0'}}°</p>
-          </div>
-        </div>
-        <div class="alshfas">
-          <img src="https://svgshare.com/i/jN3.svg" height="20px" width="20px">
-          <div>
-            <p>Humidity</p>
-            <p style="color: whitesmoke; font-size: 16px; font-weight: bolder">{{forecast.humidity}}%</p>
-          </div>
-        </div>
-        <div class="alshfas">
-          <img src="https://svgshare.com/i/jMP.svg" height="20px" width="20px">
-          <div>
-            <p>Visibility</p>
-            <p style="color: whitesmoke; font-size: 16px; font-weight: bolder">{{forecast.visibility | number: '1.0-0'}} mi</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-
 </div>

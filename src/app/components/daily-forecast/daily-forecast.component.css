@@ -1,0 +1,35 @@
+.daily_weather_container
+{
+  display: block;
+  max-width: 666px;
+  border-radius: 10px;
+  background: #ffffff2e;
+  padding: 10px 10px 0 10px;
+  margin-bottom: 10px;
+}
+
+.daily_weather
+{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 0;
+  justify-content: space-between;
+}
+
+.align-center
+{
+  text-align: center;
+}
+
+.small-img
+{
+  height: 80px;
+  width: 80px;
+}
+
+@media screen and (max-width:576px) {
+  .day_period{
+    flex-basis: 50%;
+  }
+
+}

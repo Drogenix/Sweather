@@ -1,0 +1,24 @@
+.weekend_weather_container
+{
+  display: block;
+  border-radius: 10px;
+  background: #ffffff2e;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+.weekend_weather
+{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 10px;
+}
+
+.align-center{
+  text-align: center;
+}
+
+@media screen and (max-width: 576px){
+  .weekend_weather{
+    justify-content: start;
+  }
+}

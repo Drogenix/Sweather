@@ -73,37 +73,7 @@ p
 .weather_info_container
 {
   display: block;
-  padding: 20px 0;
-}
-.weather_navbar
-{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 35px;
-  margin-bottom: 30px;
-}
-.navbar_item
-{
-  text-decoration: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  margin-right: 20px;
-  font-size: 20px;
-  font-weight: bold;
-  color: white;
-  width: 200px;
-  background: #FFFFFF40;
-  border: 0;
-  border-radius: 5px;
-  box-shadow: 0 0 12px #00337060;
-  transition: 300ms ease;
-}
-.navbar_item:hover {
-  margin-bottom: 5px;
-  text-shadow: 2px 2px 8px white;
+  padding: 12px 0;
 }
 .weather_content
 {
@@ -116,7 +86,7 @@ p
   gap: 10px;
   justify-content: space-between;
   flex-wrap: wrap;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 .weather_container
 {
@@ -140,7 +110,7 @@ p
 .title
 {
   padding: 0;
-  font-size: clamp(18px, 5vw, 22px);
+  font-size: clamp(18px, 3vw, 22px);
   font-weight: normal;
   color: white;
   margin-bottom: 10px;
@@ -148,7 +118,7 @@ p
 .weather_info{
   display: flex;
   align-items: center;
-  margin: auto;
+  margin: auto 0;
   gap: 5px 15px;
   flex-wrap: wrap;
   justify-content: center;
@@ -156,18 +126,14 @@ p
 .day_state
 {
   display: flex;
-  flex: 1;
+  flex: 1 1;
   align-items: center;
+  justify-content: center;
   flex-wrap: wrap;
-}
-
-.day_state img{
-  margin: 0 auto;
 }
 
 .day_state p
 {
-  flex: 1 1;
   text-align: center;
   font-size: 20px;
   color: white;
@@ -176,6 +142,7 @@ p
 
 .day_temp
 {
+  flex: 1 1 fit-content;
   display: block;
   text-align: center;
 }
@@ -300,79 +267,38 @@ p
   top:3px;
   position: relative;
 }
-.daily_weather_container
-{
-  display: block;
-  border-radius: 10px;
-  background: #ffffff2e;
-  padding: 10px 10px 0 10px;
-  margin-bottom: 20px;
-}
-.daily_weather
-{
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 20px;
-}
-.align-center
-{
-  text-align: center;
-}
-.small-img
-{
-  height: 80px;
-  width: 80px;
-}
-.weekend_weather_container
-{
-  display: block;
-  border-radius: 10px;
-  background: #ffffff2e;
-  padding: 10px 5px;
-  margin-bottom: 20px;
-}
-.weekend_weather
-{
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 20px;
 
-}
+
 .night_temp
 {
-  color: black;
+  color: #003370;
   font-weight: normal;
 }
 .month_weather_container
 {
   display: block;
-  border-radius: 10px;
+  padding-top: 16px;
+  border-radius: 10px 10px 0 0;
   background: #ffffff2e;
-  padding-top: 20px;
-}
-
-.month_title
-{
-  font-size: 26px;
-  color: white;
-  margin:0 10px 10px;
 }
 
 .month_weather
 {
-  border-top: 1px solid white;
+  display: grid;
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  border-left: 1px solid rgba(255, 255, 255, 0.6);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 }
 .month_weather p
 {
   font-size: 18px;
-  color: white;
 }
 .fajsaksf
 {
   display: flex;
-  justify-content: space-between;
-  flex-grow: 1;
-  padding: 10px 0 10px 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px;
 }
 .aspifkl p{
   display: flex;
@@ -386,23 +312,26 @@ p
 }
 .month_day
 {
-  margin-right: 30px;
-  width: 127px;
+  flex: 1 1 100%;
+  color: white;
+  text-align: center;
 }
 .month_state
 {
-  margin: 0 15px;
+  margin-right: 15px;
 }
 .WUPbwxcclV
 {
-  font-size: 16px;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  color: white;
-  margin-right: 20px;
-  width: 110px;
+  gap: 0 12px;
+  flex-grow: 1;
+  font-size: 16px;
 }
-.WUPbwxcclV img
+
+.windspeed img
 {
   top:3px;
   position: relative;
@@ -449,8 +378,8 @@ margin: 20px 0 0 0 ;
 .period_info
 {
   display: flex;
+  flex: 1;
   justify-content: space-between;
-  width: 490px;
   align-items: center;
 }
 .period_temp
@@ -479,6 +408,7 @@ margin: 20px 0 0 0 ;
 }
 .period_options
 {
+  flex: 1;
   border: 2px solid white;
   border-radius: 5px;
   padding: 15px 15px 0 15px;
@@ -586,8 +516,8 @@ margin: 20px 0 0 0 ;
 }
 .month_container
 {
-  display: block;
   align-items: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
   border-bottom: 1px solid rgba(255, 255, 255, 0.6);
   position: relative;
   transition: 400ms;
@@ -596,10 +526,7 @@ margin: 20px 0 0 0 ;
 {
   border-color: rgba(255, 255, 255);
 }
-.month_container:last-child
-{
-  border-bottom: 1px solid transparent;
-}
+
 .details_container
 {
   display: block;

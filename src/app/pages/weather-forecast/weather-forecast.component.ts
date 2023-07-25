@@ -54,8 +54,8 @@ export class WeatherForecastComponent implements OnInit{
     )
 
     this.weatherForecast$ = combineLatest([monthWeatherForecast$, dailyWeatherForecast$]).pipe(
-      catchError(()=>{
-        this.error = "We didn't find any information about this region. Try search another city";
+      catchError((error)=>{
+        this.error = error;
         this._loadingSubject.next(false)
 
         return of();
