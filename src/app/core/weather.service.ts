@@ -40,8 +40,6 @@ export class WeatherService {
   }
 
   private _handleError(error: HttpErrorResponse) {
-    debugger;
-
     if(error.status === 400){
       return throwError(()=>ERROR_MESSAGES.NOT_FOUND);
     }
@@ -52,9 +50,9 @@ export class WeatherService {
       const oldApiKey = this._apiKey;
 
       if(this._updateApiKey() && url != null){
-        url.replace(oldApiKey, this._apiKey);
+        const newUrl = url.replace(oldApiKey, this._apiKey);
 
-        return this.http.get<WeatherForecast>(url);
+        return this.http.get<WeatherForecast>(newUrl);
       }
     }
 

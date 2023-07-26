@@ -14,8 +14,8 @@ import {DailyForecastComponent} from "./components/daily-forecast/daily-forecast
 import {RootComponent} from "./pages/root/root.component";
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import {ReactiveFormsModule} from "@angular/forms";
-import {CustomRouteReuseStrategy} from "./core/custom-route-reuse-strategy";
 import { ErrorComponent } from './components/error/error.component';
+import {CustomRouteReuseStrategy} from "./core/custom-route-reuse-strategy";
 
 @NgModule({
   declarations: [

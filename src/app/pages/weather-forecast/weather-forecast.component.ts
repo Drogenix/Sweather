@@ -1,7 +1,17 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {WeatherService} from "../../core/weather.service";
-import {BehaviorSubject, catchError, combineLatest, map, Observable, of, switchMap, tap} from "rxjs";
+import {
+  BehaviorSubject,
+  catchError,
+  combineLatest,
+  map,
+  Observable,
+  of,
+  shareReplay,
+  switchMap,
+  tap
+} from "rxjs";
 import {Forecast} from "../../core/entities/forecast";
 import {WeatherForecast} from "../../core/entities/weather-forecast";
 
@@ -18,9 +28,8 @@ type GeneralForecast = {
 export class WeatherForecastComponent implements OnInit{
 
   private _loadingSubject = new BehaviorSubject<boolean>(false);
-  loading$ = this._loadingSubject.asObservable();
+  loading$ = this._loadingSubject.asObservable().pipe(shareReplay(1));
   weatherForecast$:Observable<GeneralForecast>;
-
   error = '';
 
   constructor(private weatherApiService:WeatherService, private activatedRoute: ActivatedRoute) {}
@@ -29,12 +38,10 @@ export class WeatherForecastComponent implements OnInit{
 
     const city$ = this.activatedRoute.queryParams.pipe(
       tap(()=> {
-        this.error = '';
         this._loadingSubject.next(true);
       }),
       map((params)=> {
-        var cityParam = params['city'];
-
+        const cityParam = params['city'];
         return cityParam ? cityParam : "Minsk"
       })
     )
@@ -56,11 +63,14 @@ export class WeatherForecastComponent implements OnInit{
     this.weatherForecast$ = combineLatest([monthWeatherForecast$, dailyWeatherForecast$]).pipe(
       catchError((error)=>{
         this.error = error;
-        this._loadingSubject.next(false)
+        this._loadingSubject.next(false);
 
         return of();
       }),
-      tap(()=> this._loadingSubject.next(false)),
+      tap(()=> {
+        this.error = '';
+        this._loadingSubject.next(false);
+      }),
       map(([monthWeatherForecast, dailyWeatherForecast]) => {
         return {month: monthWeatherForecast, daily: dailyWeatherForecast}
       }))
