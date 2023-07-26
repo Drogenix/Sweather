@@ -39,12 +39,26 @@ export class WeatherService {
     return false;
   }
 
-  private _getErrorMessage(error: HttpErrorResponse):string {
+  private _handleError(error: HttpErrorResponse) {
+    debugger;
+
     if(error.status === 400){
-      return ERROR_MESSAGES.NOT_FOUND;
+      return throwError(()=>ERROR_MESSAGES.NOT_FOUND);
     }
 
-    return ERROR_MESSAGES.SERVICE_NOT_AVAILABLE;
+    if(error.status === 429){
+      const url = error.url;
+
+      const oldApiKey = this._apiKey;
+
+      if(this._updateApiKey() && url != null){
+        url.replace(oldApiKey, this._apiKey);
+
+        return this.http.get<WeatherForecast>(url);
+      }
+    }
+
+    return throwError(()=> ERROR_MESSAGES.SERVICE_NOT_AVAILABLE);
   }
 
   getMonthWeatherForecast(city: string) : Observable<WeatherForecast> {
@@ -61,17 +75,7 @@ export class WeatherService {
     const url = BASE_URL + city + '/' + nowDateString + '/' + afterMonthDateString +'?unitGroup=metric&include=days&key='+ this._apiKey +'&contentType=json';
 
     return this.http.get<WeatherForecast>(url).pipe(
-      catchError((err:HttpErrorResponse)=> {
-        const error = this._getErrorMessage(err);
-
-        if(this._updateApiKey()){
-          const url = BASE_URL + city + '/' + nowDateString + '/' + afterMonthDateString +'?unitGroup=metric&include=days&key='+ this._apiKey +'&contentType=json';
-
-          return this.http.get<WeatherForecast>(url);
-        }
-
-        return throwError(()=> error)
-      })
+      catchError((err)=> this._handleError(err))
     );
   }
   getDayWeatherForecast(city: string) : Observable<Forecast[]>
@@ -79,17 +83,7 @@ export class WeatherService {
     const url = BASE_URL + city +'/today?unitGroup=metric&include=hours&key='+ this._apiKey +'&contentType=json';
 
     return this.http.get<WeatherForecast>(url).pipe(
-      catchError((err:HttpErrorResponse)=> {
-        const error = this._getErrorMessage(err);
-
-        if(this._updateApiKey()){
-          const url = BASE_URL + city +'/today?unitGroup=metric&include=hours&key='+ this._apiKey +'&contentType=json';
-
-          return this.http.get<WeatherForecast>(url);
-        }
-
-        return throwError(()=> error)
-      }),
+      catchError((err)=> this._handleError(err)),
       map((dailyForecast)=> dailyForecast.days[0].hours),
       shareReplay(1));
   }
