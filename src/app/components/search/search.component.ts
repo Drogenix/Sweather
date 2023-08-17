@@ -12,7 +12,7 @@ export class SearchComponent {
 
   constructor(private router:Router, private fb:FormBuilder) { }
 
-  showForecast(){
+  showForecast(event: any){
     if(this.input.valid){
       const city = this.input.value;
 
@@ -21,6 +21,8 @@ export class SearchComponent {
           city: city
         }
       });
+
+      event.preventDefault();
     }
   }
 }
