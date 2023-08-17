@@ -1,4 +1,4 @@
-<form class="search_box" (submit)="showForecast()">
+<form class="search_box" (submit)="showForecast($event)">
     <input class="input_field" placeholder="Enter city name" [formControl]="input" type="text">
     <div class="vertical_separator"></div>
     <button class="search_button" type="submit">
